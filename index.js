@@ -50,6 +50,13 @@ axios.interceptors.response.use(
 
 const app = express();
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    res.header("Access-Control-Allow-Methods", "*");
+    next();
+})
+
 app.get("/", a, (req, res) => {
 	let tracking = ""
 	Object.keys(apps).forEach((key) => {
