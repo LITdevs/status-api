@@ -71,7 +71,7 @@ app.post("/track", a, (req, res) => {
 	res.send("ok");
 })
 
-app.get("/:name", a, (req, res) => {
+app.get("/:name", (req, res) => {
 	if (!apps[req.params.name] || !data[req.params.name]) return res.status(404).send("no such app");
 	res.send(data[req.params.name]);
 })
