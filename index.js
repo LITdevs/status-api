@@ -91,6 +91,9 @@ function track(name) {
 			statusCode: res.status,
 			duration: res.duration
 		});
+		if (data[name].length > 2016) {
+			data[name].shift();
+		}
 		fs.writeFileSync("./data.json", JSON.stringify(data, null, 4));
 	}).catch((err) => {
 		data[name].push({
@@ -98,6 +101,9 @@ function track(name) {
 			statusCode: err.response.status,
 			duration: -1
 		});
+		if (data[name].length > 2016) {
+			data[name].shift();
+		}
 		fs.writeFileSync("./data.json", JSON.stringify(data, null, 4));
 	});
 }
