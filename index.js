@@ -64,6 +64,7 @@ app.post("/track", a, (req, res) => {
 		res.status(400).send("Missing id or name");
 		return;
 	}
+	if(apps[name]) return res.status(400).send("Already tracked");
 	apps[name] = { url, name };
 	data[name] = [];
 	fs.writeFileSync("./apps.json", JSON.stringify(apps, null, 4));
