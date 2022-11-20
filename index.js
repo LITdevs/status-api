@@ -88,7 +88,7 @@ const timedTrack = async () => {
 	Object.keys(apps).forEach((key) => { track(key); });
 }
 timedTrack();
-setInterval(timedTrack, 1000 * 60 * 5);
+setInterval(timedTrack, 1000 * 60 * 15);
 
 function track(name) {
 	console.log(`tracking ${name}`);
@@ -99,7 +99,7 @@ function track(name) {
 			statusCode: res.status,
 			duration: res.duration
 		});
-		if (data[name].length > 2016) {
+		if (data[name].length > 672) {
 			data[name].shift();
 		}
 		fs.writeFileSync("./data.json", JSON.stringify(data, null, 4));
@@ -109,7 +109,7 @@ function track(name) {
 			statusCode: err.response.status,
 			duration: -1
 		});
-		if (data[name].length > 2016) {
+		if (data[name].length > 672) {
 			data[name].shift();
 		}
 		fs.writeFileSync("./data.json", JSON.stringify(data, null, 4));
